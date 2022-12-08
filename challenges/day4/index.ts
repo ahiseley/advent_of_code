@@ -1,22 +1,15 @@
 function part1(data: string): number {
-  let pairs = data.split('\n').map(pair => pair.split(','))
-  let cleanedPairs = pairs.map(pair =>
-    pair.map(assignment => assignment.split('-'))
-  )
-
+  let pairs = data.split('\n')
   let count = 0
-  for (let i = 0; i < cleanedPairs.length; i++) {
-    const pair = cleanedPairs[i]
-    const [prevStart, prevEnd] = pair[0]
-    const [currStart, currEnd] = pair[1]
+  for (let pair of pairs) {
+    const [prev, curr] = pair.split(',')
+    const [prevStart, prevEnd] = prev.split('-')
+    const [currStart, currEnd] = curr.split('-')
     if (
-      Number(prevStart) <= Number(currStart) &&
-      Number(prevEnd) >= Number(currEnd)
-    )
-      count++
-    else if (
-      Number(currStart) <= Number(prevStart) &&
-      Number(currEnd) >= Number(prevEnd)
+      (Number(prevStart) <= Number(currStart) &&
+        Number(prevEnd) >= Number(currEnd)) ||
+      (Number(currStart) <= Number(prevStart) &&
+        Number(currEnd) >= Number(prevEnd))
     )
       count++
   }
@@ -25,24 +18,17 @@ function part1(data: string): number {
 }
 
 function part2(data: string): number {
-  let pairs = data.split('\n').map(pair => pair.split(','))
-  let cleanedPairs = pairs.map(pair =>
-    pair.map(assignment => assignment.split('-'))
-  )
-
+  let pairs = data.split('\n')
   let count = 0
-  for (let i = 0; i < cleanedPairs.length; i++) {
-    const pair = cleanedPairs[i]
-    const [prevStart, prevEnd] = pair[0]
-    const [currStart, currEnd] = pair[1]
+  for (let pair of pairs) {
+    const [prev, curr] = pair.split(',')
+    const [prevStart, prevEnd] = prev.split('-')
+    const [currStart, currEnd] = curr.split('-')
     if (
-      Number(prevStart) <= Number(currStart) &&
-      Number(prevEnd) >= Number(currStart)
-    )
-      count++
-    else if (
-      Number(currStart) <= Number(prevStart) &&
-      Number(currEnd) >= Number(prevStart)
+      (Number(prevStart) <= Number(currStart) &&
+        Number(prevEnd) >= Number(currStart)) ||
+      (Number(currStart) <= Number(prevStart) &&
+        Number(currEnd) >= Number(prevStart))
     )
       count++
   }

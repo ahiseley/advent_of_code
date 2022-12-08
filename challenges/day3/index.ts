@@ -37,8 +37,8 @@ function part2(data: string): number {
   let rucksacks = data.split('\n'),
     sum = 0
 
-  let set1 = new Set(),
-    set2 = new Set(),
+  let set1 = new Set<string>(),
+    set2 = new Set<string>(),
     currSet = 1
   for (let i = 0; i < rucksacks.length; i++, currSet++) {
     for (let char of rucksacks[i]) {
